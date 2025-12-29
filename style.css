@@ -1,27 +1,36 @@
 
+html {
+    scroll-behavior: smooth;
+}
+
 body{
     margin: 0;
     text-align: center;
     font-family: 'Merriweather', serif;
-    background-color: rgb(179, 240, 219);
+    background-color: rgb(100, 180, 200);
     width: auto;
     font-size: 1rem;
+    position: relative;
+    overflow-x: hidden;
 }
 
 h1{
     margin: 50px auto 0 auto;
     font-size: 90px;
     font-family: 'Caveat', cursive;
-    color: rgb(6, 209, 209);
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 h3{
     width: 30%;
     margin: auto;
-    color: rgb(14, 230, 238);
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 h2{
     font-size: 40px; 
-    color: rgb(63, 211, 211);
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 p{
@@ -41,16 +50,19 @@ a{
     padding: 0 30px;
     text-decoration: none;
     font-weight: bold;
+    color: rgb(255, 255, 255);
+    transition: all 0.3s ease;
 }
 a:hover{
-    color: rgb(211, 241, 239);
+    color: rgb(200, 255, 255);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 img{
     width: 40%;
 }
 
 .top-container{
-    background-color: rgb(179, 240, 219);
+    background-color: rgb(100, 180, 200);
     position: relative;
     padding-top: 100px;
     width: auto;
@@ -62,35 +74,96 @@ img{
     margin: 100px auto 100px auto;
     text-align: left;
     line-height: 2;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px 20px;
+    border-radius: 15px;
+    border-left: 4px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
 
+.skill-row:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+    border-left-color: rgba(255, 255, 255, 0.6);
 }
 .top-cloud{
     position: absolute;
     right: 400px;
     top: 100px;
     width: auto;
-
+    will-change: transform;
+    animation: floatCloudLR 10s ease-in-out infinite;
 }
 .bottom-cloud{
-  position: absolute;
-  left: 400px;
-  bottom: 300px;
-  width: auto;
+    position: absolute;
+    left: 400px;
+    bottom: 300px;
+    width: auto;
+    will-change: transform;
+    animation: floatCloudLR 12s ease-in-out infinite;
+    animation-delay: 1s;
 }
 .profile{
     padding-top: 150px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 150px 20px 50px 20px;
+    border-radius: 15px;
+    margin: 50px auto;
+    width: 90%;
+    max-width: 800px;
+}
+
+@keyframes floatCloud {
+    0% {
+        transform: translateY(0) translateZ(0);
+    }
+    50% {
+        transform: translateY(-25px) translateZ(0);
+    }
+    100% {
+        transform: translateY(0) translateZ(0);
+    }
+}
+
+/* Left-to-right then right-to-left floating with a subtle bob */
+@keyframes floatCloudLR {
+    0% {
+        transform: translateX(-30px) translateY(0) translateZ(0);
+    }
+    25% {
+        transform: translateX(0px) translateY(-8px) translateZ(0);
+    }
+    50% {
+        transform: translateX(30px) translateY(0) translateZ(0);
+    }
+    75% {
+        transform: translateX(0px) translateY(-8px) translateZ(0);
+    }
+    100% {
+        transform: translateX(-30px) translateY(0) translateZ(0);
+    }
 }
 .chilli{
     width: 25%;
     float: right;
     margin-left: 30px;
     border-radius: 20%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.chilli:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 .comp{
     width: 25%;
     float: left;
     margin-right: 30px;
     border-radius: 20%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.comp:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -100,14 +173,15 @@ img{
     border-radius: 100%;
 }
 .bottom-container{
-    background-color: rgb(11, 182, 182);
+    background-color: rgb(50, 140, 160);
     height: 80px;
     padding: 30px 0 0;
+    transition: background-color 0.3s ease;
 }
 .last{
     font-size: 0.7rem;
     padding: 10px 0 0;
-    color: rgb(226, 217, 217);
+    color: rgb(255, 255, 255);
 }
 
 .btn {
@@ -139,3 +213,278 @@ img{
   .contact-me{
     margin-bottom: 100px
   }
+
+/* Snowflakes Animation */
+.snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: #fff;
+    font-size: 1.5em;
+    font-family: Arial, sans-serif;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    animation: snowfall linear infinite;
+    opacity: 0.8;
+}
+
+.snowflake:nth-child(1) { left: 5%; animation-duration: 8s; animation-delay: 0s; }
+.snowflake:nth-child(2) { left: 10%; animation-duration: 10s; animation-delay: 1s; }
+.snowflake:nth-child(3) { left: 15%; animation-duration: 12s; animation-delay: 2s; }
+.snowflake:nth-child(4) { left: 20%; animation-duration: 11s; animation-delay: 0.5s; }
+.snowflake:nth-child(5) { left: 25%; animation-duration: 9s; animation-delay: 1.5s; }
+.snowflake:nth-child(6) { left: 30%; animation-duration: 13s; animation-delay: 2.5s; }
+.snowflake:nth-child(7) { left: 35%; animation-duration: 10s; animation-delay: 0.2s; }
+.snowflake:nth-child(8) { left: 40%; animation-duration: 12s; animation-delay: 1.8s; }
+.snowflake:nth-child(9) { left: 45%; animation-duration: 9s; animation-delay: 0.8s; }
+.snowflake:nth-child(10) { left: 50%; animation-duration: 11s; animation-delay: 2.2s; }
+.snowflake:nth-child(11) { left: 55%; animation-duration: 8s; animation-delay: 0.3s; }
+.snowflake:nth-child(12) { left: 60%; animation-duration: 13s; animation-delay: 1.2s; }
+.snowflake:nth-child(13) { left: 65%; animation-duration: 10s; animation-delay: 2.8s; }
+.snowflake:nth-child(14) { left: 70%; animation-duration: 12s; animation-delay: 0.7s; }
+.snowflake:nth-child(15) { left: 75%; animation-duration: 9s; animation-delay: 1.5s; }
+.snowflake:nth-child(16) { left: 80%; animation-duration: 11s; animation-delay: 2.1s; }
+.snowflake:nth-child(17) { left: 85%; animation-duration: 10s; animation-delay: 0.4s; }
+.snowflake:nth-child(18) { left: 90%; animation-duration: 12s; animation-delay: 1.9s; }
+.snowflake:nth-child(19) { left: 95%; animation-duration: 8s; animation-delay: 2.4s; }
+.snowflake:nth-child(20) { left: 100%; animation-duration: 13s; animation-delay: 0.9s; }
+
+@keyframes snowfall {
+    0% {
+        top: -10px;
+        opacity: 0.8;
+        transform: translateX(0);
+    }
+    10% {
+        transform: translateX(50px);
+    }
+    20% {
+        transform: translateX(-30px);
+    }
+    30% {
+        transform: translateX(40px);
+    }
+    40% {
+        transform: translateX(-20px);
+    }
+    50% {
+        transform: translateX(30px);
+    }
+    60% {
+        transform: translateX(-40px);
+    }
+    70% {
+        transform: translateX(20px);
+    }
+    80% {
+        transform: translateX(-10px);
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design - Tablet */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 70px;
+        margin: 30px auto 0 auto;
+    }
+    
+    h3 {
+        width: 50%;
+        font-size: 1.2rem;
+    }
+    
+    h2 {
+        font-size: 35px;
+    }
+    
+    p {
+        width: 60%;
+        font-size: 0.95rem;
+    }
+    
+    img {
+        width: 50%;
+    }
+    
+    .skill-row {
+        width: 70%;
+        margin: 80px auto 80px auto;
+    }
+    
+    .top-cloud {
+        right: 250px;
+        top: 50px;
+    }
+    
+    .bottom-cloud {
+        left: 250px;
+        bottom: 250px;
+    }
+    
+    .profile {
+        padding-top: 100px;
+    }
+    
+    hr {
+        width: 15%;
+    }
+}
+
+/* Responsive Design - Mobile */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 50px;
+        margin: 20px auto 0 auto;
+    }
+    
+    h3 {
+        width: 80%;
+        font-size: 1rem;
+    }
+    
+    h2 {
+        font-size: 28px;
+    }
+    
+    p {
+        width: 85%;
+        font-size: 0.9rem;
+        margin: 10px auto 30px;
+    }
+    
+    img {
+        width: 70%;
+    }
+    
+    .skill-row {
+        width: 90%;
+        margin: 50px auto 50px auto;
+        text-align: center;
+    }
+    
+    .comp, .chilli {
+        width: 40%;
+        float: none;
+        margin: 20px auto;
+        display: block;
+    }
+    
+    .top-cloud {
+        display: none;
+    }
+    
+    .bottom-cloud {
+        display: none;
+    }
+    
+    .profile {
+        padding-top: 50px;
+    }
+    
+    .pic {
+        width: 150px;
+        height: 150px;
+    }
+    
+    hr {
+        width: 80%;
+        margin: 50px auto 50px;
+    }
+    
+    a {
+        padding: 0 15px;
+        font-size: 0.9rem;
+    }
+    
+    .btn {
+        font-size: 16px;
+        padding: 8px 15px 8px 15px;
+    }
+    
+    .bottom-container {
+        height: auto;
+        padding: 20px 0;
+    }
+    
+    .last {
+        font-size: 0.6rem;
+    }
+    
+    .contact-me {
+        margin-bottom: 50px;
+    }
+}
+
+/* Responsive Design - Small Mobile */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 35px;
+        margin: 15px auto 0 auto;
+    }
+    
+    h3 {
+        width: 90%;
+        font-size: 0.9rem;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    p {
+        width: 90%;
+        font-size: 0.85rem;
+        margin: 10px auto 20px;
+    }
+    
+    img {
+        width: 80%;
+    }
+    
+    .skill-row {
+        width: 95%;
+        margin: 40px auto 40px auto;
+    }
+    
+    .comp, .chilli {
+        width: 50%;
+    }
+    
+    .pic {
+        width: 120px;
+        height: 120px;
+    }
+    
+    hr {
+        width: 90%;
+        border: 6px dotted;
+        margin: 40px auto 40px;
+    }
+    
+    a {
+        padding: 0 10px;
+        font-size: 0.8rem;
+    }
+    
+    .btn {
+        font-size: 14px;
+        padding: 6px 12px 6px 12px;
+    }
+    
+    .snowflake {
+        font-size: 1.2em;
+    }
+}

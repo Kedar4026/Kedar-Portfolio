@@ -62,10 +62,25 @@ img{
 }
 
 .top-container{
-    background-color: rgb(100, 180, 200);
+    /* Night-to-dusk gradient suitable for white snow visibility */
+    background: linear-gradient(180deg, #0b3d91 0%, #2e8ab8 55%, #64c2d6 100%);
     position: relative;
-    padding-top: 100px;
+    padding-top: 200px;
+    padding-bottom: 200px;
     width: auto;
+    overflow: hidden;
+}
+
+/* subtle star / depth overlay */
+.top-container::before{
+    content: "";
+    position: absolute;
+    inset: 0 0 0 0;
+    background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.04) 0px, transparent 4px),
+                      radial-gradient(circle at 80% 30%, rgba(255,255,255,0.03) 0px, transparent 5px);
+    background-repeat: repeat;
+    z-index: 0;
+    pointer-events: none;
 }
 
 
@@ -222,7 +237,7 @@ img{
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1;
+    z-index: 50; /* keep snow above page content */
 }
 
 .snowflake {
@@ -296,136 +311,43 @@ img{
 
 /* Responsive Design - Tablet */
 @media (max-width: 1024px) {
-    h1 {
-        font-size: 70px;
-        margin: 30px auto 0 auto;
-    }
-    
-    h3 {
-        width: 50%;
-        font-size: 1.2rem;
-    }
-    
-    h2 {
-        font-size: 35px;
-    }
-    
-    p {
-        width: 60%;
-        font-size: 0.95rem;
-    }
-    
-    img {
-        width: 50%;
-    }
-    
-    .skill-row {
-        width: 70%;
-        margin: 80px auto 80px auto;
-    }
-    
-    .top-cloud {
-        right: 250px;
-        top: 50px;
-    }
-    
-    .bottom-cloud {
-        left: 250px;
-        bottom: 250px;
-    }
-    
-    .profile {
-        padding-top: 100px;
-    }
-    
-    hr {
-        width: 15%;
-    }
+    h1 { font-size: 70px; margin: 30px auto 0 auto; }
+    h3 { width: 50%; font-size: 1.2rem; }
+    h2 { font-size: 35px; }
+    p { width: 60%; font-size: 0.95rem; }
+    img { width: 50%; }
+
+    .skill-row { width: 70%; margin: 80px auto; }
+
+    /* clouds slightly smaller and closer on tablet */
+    .top-cloud { right: 250px; top: 50px; width: 160px; z-index: 10; }
+    .bottom-cloud { left: 250px; bottom: 220px; width: 180px; z-index: 10; }
+
+    .profile { padding-top: 100px; }
+    hr { width: 15%; }
 }
 
-/* Responsive Design - Mobile */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 50px;
-        margin: 20px auto 0 auto;
-    }
-    
-    h3 {
-        width: 80%;
-        font-size: 1rem;
-    }
-    
-    h2 {
-        font-size: 28px;
-    }
-    
-    p {
-        width: 85%;
-        font-size: 0.9rem;
-        margin: 10px auto 30px;
-    }
-    
-    img {
-        width: 70%;
-    }
-    
-    .skill-row {
-        width: 90%;
-        margin: 50px auto 50px auto;
-        text-align: center;
-    }
-    
-    .comp, .chilli {
-        width: 40%;
-        float: none;
-        margin: 20px auto;
-        display: block;
-    }
-    
-    .top-cloud {
-        display: none;
-    }
-    
-    .bottom-cloud {
-        display: none;
-    }
-    
-    .profile {
-        padding-top: 50px;
-    }
-    
-    .pic {
-        width: 150px;
-        height: 150px;
-    }
-    
-    hr {
-        width: 80%;
-        margin: 50px auto 50px;
-    }
-    
-    a {
-        padding: 0 15px;
-        font-size: 0.9rem;
-    }
-    
-    .btn {
-        font-size: 16px;
-        padding: 8px 15px 8px 15px;
-    }
-    
-    .bottom-container {
-        height: auto;
-        padding: 20px 0;
-    }
-    
-    .last {
-        font-size: 0.6rem;
-    }
-    
-    .contact-me {
-        margin-bottom: 50px;
-    }
+    h1 { font-size: 50px; margin: 20px auto 0 auto; }
+    h3 { width: 80%; font-size: 1rem; }
+    h2 { font-size: 28px; }
+    p { width: 85%; font-size: 0.9rem; margin: 10px auto 30px; }
+    img { width: 70%; }
+
+    .skill-row { width: 90%; margin: 50px auto; text-align: center; }
+    .comp, .chilli { width: 40%; float: none; margin: 20px auto; display: block; }
+
+    .top-cloud, .bottom-cloud { display: none; }
+
+    .profile { padding-top: 50px; }
+    .pic { width: 150px; height: 150px; }
+
+    hr { width: 80%; margin: 50px auto; }
+    a { padding: 0 15px; font-size: 0.9rem; }
+    .btn { font-size: 16px; padding: 8px 15px; }
+    .bottom-container { height: auto; padding: 20px 0; }
+    .last { font-size: 0.6rem; }
+    .contact-me { margin-bottom: 50px; }
 }
 
 /* Responsive Design - Small Mobile */
